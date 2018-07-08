@@ -1,5 +1,5 @@
 ﻿using MVP.Client.Views;
-using MVP.Core.Entities;
+using MVP.Core.Dtos;
 using MVP.Core.Interfaces;
 using MVP.Core.Specification;
 using System;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MVP.Client.Presenters
 {
-    public class LoginPresenter
+    public class LoginPresenter : ILoginPresenter
     {
         private readonly ILoginView _view;
         private readonly IUserRepository _userRepository;
@@ -19,8 +19,12 @@ namespace MVP.Client.Presenters
         {
             _view = view;
             _view.LoginPresenter = this;
-
             _userRepository = userRepository;
+        }
+
+        public ILoginView GetLoginView()
+        {
+            return _view;
         }
 
         public void Login()
@@ -28,8 +32,7 @@ namespace MVP.Client.Presenters
             var username = _view.Username;
             var password = _view.Password;
 
-            var filterSpecification = new UserSpecification(username);
-            var user = _userRepository.GetSingle(filterSpecification);
+            var user = _userRepository.GetUser(username);
 
             if (user == null)
             {
@@ -46,6 +49,9 @@ namespace MVP.Client.Presenters
             }
 
             _view.IsLogin = true;
+            _view.Message = $"Login success. Welcome {user.Firstname} {user.Lastname}";
+
+
 
         }
 

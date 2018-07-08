@@ -12,14 +12,14 @@ namespace MVP.Infrastructure.Repository
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        protected readonly MvpContext _context;
+        protected readonly MvpDbContext _context;
 
         public Repository()
         {
-            _context = new MvpContext();
+            _context = new MvpDbContext();
         }
 
-        public Repository(MvpContext context)
+        public Repository(MvpDbContext context)
         {
             _context = context;
         }

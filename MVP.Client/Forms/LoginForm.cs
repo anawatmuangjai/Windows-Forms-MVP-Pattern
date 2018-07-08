@@ -1,4 +1,7 @@
-﻿using MVP.Client.Presenters;
+﻿using Autofac;
+using MVP.Client.Container;
+using MVP.Client.IoCContainer;
+using MVP.Client.Presenters;
 using MVP.Client.Views;
 using MVP.Core.Entities;
 using MVP.Infrastructure.Repository;
@@ -15,7 +18,7 @@ using System.Windows.Forms;
 namespace MVP.Client.Forms
 {
     public partial class LoginForm : Form, ILoginView
-    {
+    {      
         public string Username
         {
             get => UsernameTextBox.Text.Trim();
@@ -51,6 +54,11 @@ namespace MVP.Client.Forms
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        public void ShowView()
+        {
+            this.Show();
         }
     }
 }

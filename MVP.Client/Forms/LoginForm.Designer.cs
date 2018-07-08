@@ -111,6 +111,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginButton);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             this.ResumeLayout(false);
             this.PerformLayout();

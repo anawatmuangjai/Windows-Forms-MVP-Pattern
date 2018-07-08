@@ -9,10 +9,13 @@ namespace MVP.Client.Views
 {
     public interface ILoginView
     {
+        LoginPresenter LoginPresenter { set; }
+
         string Username { get; set; }
         string Password { get; set; }
         string Message { get; set; }
         bool IsLogin { get; set; }
-        LoginPresenter LoginPresenter {set;}
+       
+        void ShowView();
     }
 }
