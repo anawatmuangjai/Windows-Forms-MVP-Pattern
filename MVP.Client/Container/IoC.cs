@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MVP.Client.Container
 {
-    public static class IoCFactory
+    public static class IoC
     {
         private static StandardKernel _kernel;
 

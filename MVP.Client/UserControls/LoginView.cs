@@ -1,24 +1,24 @@
-﻿using Autofac;
-using MVP.Client.Container;
-using MVP.Client.IoCContainer;
-using MVP.Client.Presenters;
-using MVP.Client.Views;
-using MVP.Core.Entities;
-using MVP.Infrastructure.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MVP.Client.Views;
+using MVP.Client.Presenters;
 
-namespace MVP.Client.Forms
+namespace MVP.Client.UserControls
 {
-    public partial class LoginForm : Form, ILoginView
-    {      
+    public partial class LoginView : UserControl, ILoginView
+    {
+        public LoginView()
+        {
+            InitializeComponent();
+        }
+
         public string Username
         {
             get => UsernameTextBox.Text.Trim();
@@ -41,9 +41,9 @@ namespace MVP.Client.Forms
 
         public LoginPresenter LoginPresenter { private get; set; }
 
-        public LoginForm()
+        public void ShowView()
         {
-            InitializeComponent();
+            Show();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -53,12 +53,7 @@ namespace MVP.Client.Forms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
 
-        public void ShowView()
-        {
-            this.Show();
         }
     }
 }

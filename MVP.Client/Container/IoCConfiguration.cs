@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MVP.Client.Forms;
 using MVP.Client.Presenters;
+using MVP.Client.UserControls;
 using MVP.Client.Views;
 using MVP.Core.Interfaces;
 using MVP.Infrastructure.Context;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace MVP.Client.Container
 {
-    public class NinjectConfig : NinjectModule
+    public class IoCConfiguration : NinjectModule
     {
         public override void Load()
         {
@@ -25,10 +26,15 @@ namespace MVP.Client.Container
 
             Kernel.Bind<MvpDbContext>().ToSelf().InSingletonScope();
             Kernel.Bind<IUserRepository>().To<UserRepository>().InSingletonScope();
+            Kernel.Bind<IProductRepository>().To<ProductRepository>().InSingletonScope();
 
-            Kernel.Bind<ILoginView>().To<LoginForm>().InSingletonScope();
+            Kernel.Bind<IMainView>().To<MainForm>().InSingletonScope();
+            Kernel.Bind<ILoginView>().To<LoginView>().InSingletonScope();
+            Kernel.Bind<IProductView>().To<ProductView>().InSingletonScope();
+
             Kernel.Bind<ILoginPresenter>().To<LoginPresenter>().InSingletonScope();
-            
+            Kernel.Bind<IMainPresenter>().To<MainPresenter>().InSingletonScope();
+            Kernel.Bind<IProductPresenter>().To<ProductPresenter>().InSingletonScope();
         }
 
         private MapperConfiguration CreateConfiguration()

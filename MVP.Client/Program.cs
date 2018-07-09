@@ -1,6 +1,5 @@
 ﻿using MVP.Client.Container;
 using MVP.Client.Forms;
-using MVP.Client.IoCContainer;
 using MVP.Client.Presenters;
 using MVP.Client.Views;
 using MVP.Infrastructure.Context;
@@ -24,21 +23,11 @@ namespace MVP.Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //var mvpContext = new MvpDbContext();
-            //var userRepository = new UserRepository(mvpContext);
-            //var loginView = new LoginForm();
-            //var loginPresenter = new LoginPresenter(loginView, userRepository);
+            IoC.Initialize(new IoCConfiguration());
+            var mainPresenter = IoC.Get<MainPresenter>();
+            var mainView = mainPresenter.GetMainView();
 
-            // Autoface
-            //IoC.Initialize(AutofacConfig.RegisterComponents());
-            //var loginView = IoC.Resolve<LoginForm>();
-
-            IoCFactory.Initialize(new NinjectConfig());
-
-            var loginPresenter = IoCFactory.Get<LoginPresenter>();
-            var loginView = loginPresenter.GetLoginView();
-
-            Application.Run((LoginForm)loginView);
+            Application.Run((MainForm)mainView);
         }
     }
 }

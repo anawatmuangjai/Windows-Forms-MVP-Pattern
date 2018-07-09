@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\ProductDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ISpecification.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
